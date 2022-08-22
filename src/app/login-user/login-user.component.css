@@ -1,0 +1,126 @@
+
+/* .card-header{
+    background: #79a9e0;
+} */
+
+/* img {
+    margin-top: 2px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+
+  .right{
+      position: absolute;
+      width: 360px;
+      left: 60%;
+      height: 580px;
+      top: calc(50%-580px/2);
+      background: #ffffff;
+      border-radius: 25px;
+      text-align: center;
+  } */
+
+  /* .title{
+      font-family: Samsation;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 25px;
+      line-height: 145px;
+      align-items: center;
+      font-family: "Samsation",sans-serif;
+      color:#5754dd;
+  }
+
+ * {
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+  }
+
+  .contact-container{
+
+    background-image: url(../../assets/login.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: left;
+    width: 50vh;
+    height: 100vh;
+  }
+ */
+
+ .container-fluid{
+    margin: 0;
+    padding: 0;
+    background: url(../../assets/login.jpg) no-repeat;
+    height: 110vh;
+   
+    font-family: sans-serif;
+    background-size: 100% 98%;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: scroll;
+    
+}
+    @media screen and (max-width: 600px)
+    {.container-fluid{background-size: cover fixed}}
+    /* #particles-js{
+    height: 100%
+    } */
+    .loginBox
+    {position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 350px;
+    min-height: 200px;
+    background:rgba(215, 235, 247,.4) ;
+    
+    border-radius: 10px;
+    padding: 35px;
+    box-sizing: border-box;
+    border-color:#00ffff;
+    border-style:inset;   
+    }
+    .errors
+    {
+        color: red;
+    }
+    .user
+    {margin: 0 auto;
+    display: block;
+    margin-bottom: 20px
+    }
+    h3{margin: 0;padding: 0 0 20px;color: #59238F;text-align: center}
+    .loginBox input{width: 100%;margin-bottom: 20px}
+    .loginBox input[type="text"], 
+    .loginBox input[type="password"]{border: none;border-bottom: 2px solid #320F90 ;outline: none;height: 40px;color: #320F90 ;background: transparent;font-size: 16px;padding-left: 20px;box-sizing: border-box}
+    .loginBox input[type="text"]:hover, 
+    .loginBox input[type="password"]:hover{color: #320F90 ;border: 1px solid #320F90 ;box-shadow: 0 0 5px rgba(0,255,0,.3), 0 0 10px rgba(0,255,0,.2), 0 0 15px rgba(0,255,0,.1), 0 2px 0 black}
+    .loginBox input[type="text"]:focus,
+     .loginBox input[type="password"]:focus{border-bottom: 2px solid  #320F90 }
+    .inputBox{position: relative}.inputBox span{position: absolute;top: 10px;color: #262626}
+    .loginBox button[type="submit"]{border: none;outline: none;height: 40px;width:400px;font-size: 16px;background: #59238F;color: #fff;border-radius: 20px;cursor: pointer}
+    .loginBox a{color:  #59238F;font-size: 15px;font-weight: bold;text-decoration: none;text-align: center;display: block}
+    .loginBox a:hover{color: #00ffff;}
+
+    p{color:  #59238F}
+    .text-sm {
+        font-size: 14px !important;
+    }
+    :-ms-input-placeholder {
+        color: #BDBDBD;
+        font-weight: 300
+    }
+    
+    input:focus, textarea:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        border: 1px solid #79a9e0;
+        outline-width: 0;
+    }
+    
+    
+    
+    

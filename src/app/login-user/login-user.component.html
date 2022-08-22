@@ -1,0 +1,49 @@
+<div class="container-fluid">
+    <div class="loginBox"> <img class="user" src="https://cdn-icons-png.flaticon.com/512/3159/3159054.png" height="100px" width="100px">
+      <h3>Welcome Back !</h3>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        
+        <div class="row px-3 mb-4">
+          <div class="line"></div>
+         
+          <div class="line"></div>
+        </div>
+        <div class="inputbox">
+        <div class="row px-3">
+          <input type="text" formControlName="loginId" class="user-input " placeholder="loginId"
+            [ngClass]="{ 'is-invalid': f.loginId.touched && f.loginId.errors }" />
+          <div *ngIf="f.loginId.touched && f.loginId.errors" class="invalid-feedback">
+            <div class="alert alert-danger" *ngIf="f.loginId.errors.required">Username is required</div>
+          </div>
+        </div>
+        <div class="row px-3">
+          <input type="password" formControlName="password" class="pass-input " placeholder="Password"
+            [ngClass]="{ 'is-invalid': f.password.touched && f.password.errors }" />
+          <div *ngIf="f.password.touched && f.password.errors" class="invalid-feedback">
+            <div class="alert alert-danger" *ngIf="f.password.errors.required">Password is required</div>
+          </div>
+        </div>
+        </div>
+              <div *ngIf="invalid" class="text-danger">
+                <p class="alert alert-danger">Invalid Credentials:( Please enter correct Username and Password</p>
+              </div>
+        <div class="row mb-3 px-3">
+          <button type="submit" [disabled]=loginForm.invalid class="btn">Login</button>
+        </div>
+      
+        <div class="row">
+          <div class="col">
+          <a 
+              routerLink="register" >Register</a>
+        
+      </div>
+      <div class="col">
+          <a 
+              routerLink="forgotpassword">Forgot Password</a>
+              </div>
+              </div>
+        
+      </form> 
+     </div>
+      
+    </div>

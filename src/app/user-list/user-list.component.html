@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-9">
+        <div class="row row-col-4 g-4">
+          <div *ngFor="let user of userList">
+            <div class="card ml-5 col mt-3" style="width: 18rem">
+              <img  src="https://cdn2.vectorstock.com/i/thumb-large/59/71/purple-male-gay-bisexual-profile-picture-vector-22975971.jpg"  alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">
+                  <a
+                    class="link-primary"
+                    [routerLink]="['nav/tweets/', user.loginId]"
+                    >@ {{ user.loginId }}</a>
+                  
+                </h5>
+                <div class="card-text">
+                  
+                    {{ user.email }}
+                    
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,16 @@
+.container-fluid
+{
+  margin: 0;
+  padding: 0;
+  background: url(../../assets/login.jpg) no-repeat center center fixed;
+  height: 100vh;
+  font-family: sans-serif;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height:100%;
+  overflow: scroll;
+  }
+
+  @media screen and (max-width: 600px)
+  {.container-fluid{background-size: cover fixed}}

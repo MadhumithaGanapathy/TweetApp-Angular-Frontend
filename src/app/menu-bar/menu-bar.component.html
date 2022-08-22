@@ -1,0 +1,95 @@
+
+
+<mat-toolbar class="mat-elevation-z8 row" >
+ 
+  <!-- <img src="assets\TweetMsg.png"/> -->
+ 
+    <div class="col-md-2">
+      <div class="icon-text">
+        <button mat-button class="menu-button" routerLink="/home" style="margin-top:0;margin-bottom:25px">
+         
+          <img class="logo" src="https://cdn-icons-png.flaticon.com/512/3159/3159054.png"/>
+          <span class="name">Tweet App</span>
+        </button>
+      </div>
+    </div>
+    <div class="col-md-1" style="display: flex; justify-content: flex-end">
+      <div class="icon-text" >
+        <button mat-button class="menu-button" style="margin-bottom:25px">
+          <mat-icon>supervisor_account</mat-icon>
+          <span class="name"><a routerLink="user-list" style=" color:white" >Friends</a></span>
+        </button>
+      </div>
+    </div>
+    <div class="col-md-1" style="display: flex; justify-content: flex-end">
+
+      <div class="icon-text" style="display: flex; justify-content: flex-end">
+        <button mat-button class="menu-button" style="margin-top:0;margin-bottom:25px" >
+          <mat-icon> add_comment</mat-icon>
+          <span class="name"><a routerLink="posttweet" style=" color: white;">Post</a></span>
+        </button>
+      </div>
+    </div>
+  
+    <div class="col-md-5"></div>
+    <div class="col-md-2" style="display: flex;justify-content: flex-end " >
+      <div class="icon-text" style="display: flex; justify-content: flex-end">
+
+        <button mat-button class="menu-button"  (click)="sidenav.toggle()" style="margin-top:0;margin-bottom:25px">
+          <div class="profile" *ngIf="!sidenav.opened">
+            <img class="avatar-profile" src="https://cdn2.vectorstock.com/i/thumb-large/59/71/purple-male-gay-bisexual-profile-picture-vector-22975971.jpg" />
+            {{currentUser.firstName}}
+          </div>
+          <div *ngIf="sidenav.opened">
+              <mat-icon style="margin-top:15px">close</mat-icon>
+          </div>
+      </button>
+      </div>
+    </div>
+    <div class="col-md-1" style="display: flex; justify-content: flex-end">
+      <div class="icon-text" style="display: flex; justify-content: flex-end;">
+        <button mat-button class="menu-button" (click)="doLogOut()"  style="margin-top:0;margin-bottom:25px">
+          <mat-icon>logout</mat-icon>
+  
+            <a routerLink="logout"  aria-hidden="true">Logout</a>
+        </button>
+      </div>
+    </div>
+    
+ 
+</mat-toolbar>
+
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav"  class="mat-elevation-z8 " >
+ 
+    <img class="avatar mat-elevation-z8" src="https://cdn2.vectorstock.com/i/thumb-large/59/71/purple-male-gay-bisexual-profile-picture-vector-22975971.jpg" />
+    <h4 class="name">{{currentUser.loginId}}</h4>
+    <mat-divider></mat-divider>
+    <button mat-button class="menu-button" style="margin-top:0;margin-bottom:25px">
+      <mat-icon>person</mat-icon>
+      <span class="name">{{currentUser.firstName}},{{currentUser.lastName}}</span>
+    </button>
+    <button mat-button class="menu-button">
+      <mat-icon>phone</mat-icon>
+      <span class="name">+91 {{currentUser.contactNumber}}</span>
+    </button>
+    <button mat-button class="menu-button">
+      <mat-icon>email</mat-icon>
+      <span class="name">{{currentUser.email}}</span>
+    </button>
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button">
+      <mat-icon>https</mat-icon>
+      <span>
+        <a routerLink="passwordReset/{{currentUser.loginId}}">Reset Password</a></span>
+    </button>
+   
+  </mat-sidenav>
+  <mat-sidenav-content>
+    
+      <router-outlet></router-outlet>
+    
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,165 @@
+<div class="container-fluid">
+    <div class="row">
+      <!-- Nav Bar Component -->
+      <div class="col-md-4" [ngClass]="{'modal fade' : flag}" id="tweetPost"> <h1 style="text-align:center;margin:35px;position: fixed; overflow-y: scroll;  overflow: hidden;">Tweets for {{this.currentUser.firstName}} !</h1>
+      <img src="../../assets/TweetForYou.png" style="height:500px;width:500px; position: fixed; overflow-y: scroll;margin-top:100px">
+      </div>
+      <div class="col-md-3" [ngClass]="{'modal fade' : !flag}" id="tweetPost"><h1 style="text-align:center;margin:35px;position: fixed; overflow-y: scroll;  overflow: hidden;">{{this.currentUser.firstName}}'s Tweets</h1></div>
+      <div class="col-md-5" >
+
+       
+        <!-- Post tweet Chat -->
+       
+       
+          <div class="row row-cols-1" *ngFor="let tweet of tweetList; trackBy: trackTweet" style="margin:5px;">
+            
+              <div class="entete card w-100 h-100 talk-bubble tri-right btm-right-in">
+                <div class="row no-gutters ">
+                  <div class="col-md-2">
+                    <img src="https://cdn2.vectorstock.com/i/thumb-large/59/71/purple-male-gay-bisexual-profile-picture-vector-22975971.jpg"
+                      [ngClass]="tweet.user.loginId == currentUser.loginId ?'card-img':'card-img grayscale'"
+                      alt="..." id="profile" />
+                  </div>
+                  <div class="col-md-10">
+                    <div class="card-body">
+                      <div class="row">
+                      <div class="col">
+                      <h5 class="card-title">
+                        {{ tweet.user.loginId }}</h5>
+                              </div>      
+                    <div class="col">
+                        <small class="text-muted float-right card-text">{{
+                          tweet.postTime | dateAgo
+                          }}</small></div></div>
+  
+                      <p class="card-text">
+                        {{ tweet.tweetMsg }}
+  
+                        <small class="text-muted" style="margin-left:20px" *ngIf="tweet.tweetTag != null">#{{ tweet.tweetTag }}</small>
+                      </p>
+                    </div>
+                    <div class="mt-auto">
+                      <span class="float-right" *ngIf="tweet.user.loginId == currentUser.loginId">
+                        <button class="btn btn-outline-dark ml-2" (click)="openEditTweetPopup(tweet)">
+                          <i class="fa fa-edit"></i></button>
+                          <button class="btn btn-outline-danger ml-2"
+                          (click)="deleteTweet(tweet.tweetId)">
+                          <i class="fa fa-trash"></i></button></span>
+                      <p class="card-text">
+                       
+                        <span class="ml-3 float-right">
+                          <button class="btn btn-outline-primary" (click)="likeTweet(tweet.tweetId)">
+                            <i class="fa fa-thumbs-up"> {{ tweet.likes }} </i>
+                          </button>
+                          <button class="btn btn-outline-info ml-2" (click)="openReplyTweetPopup(tweet)">
+                            <i class="fa fa-reply"></i>
+                          </button>
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+         
+            <!-- reply chat -->
+            
+              <div class="row row-cols-1" *ngIf="tweet.replies.length > 0">
+                <div class="row w-100" *ngFor="let replyTweet of tweet.replies">
+                  <div class="card mb-2 mt-2 w-75 ml-auto talk-bubble tri-right left-top" >
+                    <div class="row no-gutters">
+                      <div class="col-md-2">
+                        <img id="profile" src="https://cdn2.vectorstock.com/i/thumb-large/59/71/purple-male-gay-bisexual-profile-picture-vector-22975971.jpg" class="card-img grayscale" alt="..." />
+                      </div>
+                      <div class="col-md-10">
+                        <div class="card-body">
+                          <h5 class="card-title">@{{ replyTweet.user.loginId }}</h5>
+  
+                          <p class="card-text">
+                            {{ replyTweet.tweetMsg }}
+                            <small class="text-muted"  style="margin-left:20px" *ngIf="replyTweet.tweetTag != null">#{{ replyTweet.tweetTag
+                              }}</small>
+                          </p>
+                          <p class="card-text">
+                            <small class="text-muted">{{
+                              replyTweet.postTime | dateAgo
+                              }}</small>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+          </div>
+       
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+  
+  <!-- edit tweet -->
+  <div class="modal fade" id="editModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header" style=" background: #79a9e0;">
+          <h5 class="modal-title">Edit Tweet</h5>
+          <button type="button" class="close" data-dismiss="modal"></button>
+        </div>
+        <form [formGroup]="editTweetForm" (ngSubmit)="editTweetSubmit()">
+          <div class="modal-body">
+            <textarea placeholder="{{ currentTweet.tweetMsg }}" class="w-100" formControlName="tweetBody" [ngClass]="{
+                'is-invalid':
+                  editSubmitted && editTweetForm.controls.tweetBody.errors
+              }"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- reply tweet -->
+  <div class="modal fade" id="replyModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header" style=" background:#59238F; color:white">
+          <h5 class="modal-title">Reply Tweet</h5>
+          <button type="button" class="close" data-dismiss="modal"></button>
+        </div>
+        <form [formGroup]="replyTweetForm" (ngSubmit)="replyTweetSubmit()">
+          <div class="modal-body">
+            <p>{{ currentTweet.tweetMsg }}</p>
+            <textarea placeholder="Your reply here..." class="w-100" formControlName="tweetBody" [ngClass]="{
+                'is-invalid':
+                  replySubmitted && replyTweetForm.controls.tweetBody.errors
+              }"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="removeTag()">
+              Close
+            </button>
+            <button  type="submit" class="btn btn-primary">Reply</button>
+            <span class="float-right" *ngIf="!addTagClicked">
+              <button class="btn btn-primary" (click)="addTag()">Tag</button>
+            </span>
+            <span class="float-right" *ngIf="addTagClicked">
+              <button class="btn btn-outline-danger btn-sm float-right ml-3" (click)="removeTag()">
+                X
+              </button>
+              <input type="text" formControlName="tweetTag" [ngClass]="{
+                  'is-invalid':
+                    replySubmitted && replyTweetForm.controls.tweetTag.errors
+                }" />
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
